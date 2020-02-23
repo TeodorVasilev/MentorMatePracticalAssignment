@@ -6,32 +6,43 @@
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter parameter N: ");
+            int n;
 
-            int n = int.Parse(Console.ReadLine());
-
-            while (ValidateN(n) != true)
+            while (true)
             {
-                if(n < 0)
+                try
+                {
+                    Console.Write("Enter parameter N: ");
+
+                    n = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine("Parameter N must be an integer number.");
+                    continue;
+                }
+
+                if(ValidateN(n))
+                {
+                    break;
+                }
+
+                if (n < 0)
                 {
                     Console.WriteLine("Parameter N must be a positive number.");
                 }
-                else if(n == 0)
+                else if (n == 0)
                 {
                     Console.WriteLine("Parameter N cannot be zero.");
                 }
-                else if(n % 2 == 0)
+                else if (n % 2 == 0)
                 {
                     Console.WriteLine("Parameter N must be an odd number.");
                 }
-                else if(n < 2)
+                else if (n < 2)
                 {
                     Console.WriteLine("Parameter N must be bigger than 2.");
                 }
-
-                Console.Write("Enter parameter N: ");
-
-                n = int.Parse(Console.ReadLine());
             }
 
             PrintTop(n);
